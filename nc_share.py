@@ -34,7 +34,7 @@ def main(args=None):
     ap.add_argument("srcfile", help="Local source file.")
     args = ap.parse_args(args)
 
-    oc = nextcloud.Client(args.url, debug=args.verbose)
+    nc = nextcloud.Client(args.url, debug=args.verbose)
 
     user = args.user if args.user else getpass.getuser()
 
@@ -43,13 +43,13 @@ def main(args=None):
     if not password:
         return "No password found in keyring for '{}' on '{}'.".format(user, args.url)
 
-    oc.login(args.user, password)
+    nc.login(args.user, password)
 
     bn = basename(args.srcfile)
     dst = pjoin(args.destdir, bn)
-    oc.put_file(dst, args.srcfile)
+    nc.put_file(dst, args.srcfile)
 
-    link_info = oc.share_file_with_link(dst)
+    link_info = nc.share_file_with_link(dst)
     link_url = link_info.get_link()
 
     if args.preview:
