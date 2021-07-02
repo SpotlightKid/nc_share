@@ -1,7 +1,7 @@
 # nc_share.py
 
-A simple Python script to upload an image to my Nextcloud server and create a
-sharing link, which is then placed in the clipboard
+A simple Python script to upload a file (e.g. an image) to my Nextcloud server and create a
+sharing link, which is then placed in the clipboard.
 
 Based on [pyocclient], in a form slightly altered by me in the file
 `nextcloud.py`.
