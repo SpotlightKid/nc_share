@@ -2,7 +2,8 @@
 """Upload a file to a Nextcloud instance then share with link."""
 
 import argparse
-from os.path import basename
+import getpass
+from os.path import basename, exists
 from posixpath import join as pjoin
 
 import keyring
@@ -33,6 +34,10 @@ def main(args=None):
     ap.add_argument("-v", "--verbose", action="store_true", help="Be more verbose.")
     ap.add_argument("srcfile", help="Local source file.")
     args = ap.parse_args(args)
+
+    if not exists(args.srcfile):
+        ap.print_help()
+        return "\nFile not found: {}".format(args.srcfile)
 
     nc = nextcloud.Client(args.url, debug=args.verbose)
 
