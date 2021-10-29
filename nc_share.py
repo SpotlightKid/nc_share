@@ -24,15 +24,15 @@ def main(args=None):
         "-d",
         "--destdir",
         default=DEST_DIR,
-        help="Remote destination directory (default: %(default)s).",
+        help="Remote destination directory (default: %(default)s)",
     )
     ap.add_argument("-U", "--user", help="Nextcloud user name (default: local username)")
     ap.add_argument("-P", "--password", help="Nextcloud password (default: use keyring)")
     ap.add_argument(
-        "-p", "--preview", action="store_true", help="Add '/preview' suffix to share link"
+        "-p", "--preview", action="store_true", help="Add '/preview' suffix to share link."
     )
     ap.add_argument("-v", "--verbose", action="store_true", help="Be more verbose.")
-    ap.add_argument("srcfile", help="Local source file.")
+    ap.add_argument("srcfile", metavar="PATH", help="Path to local file to upload")
     args = ap.parse_args(args)
 
     if not exists(args.srcfile):
